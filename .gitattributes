@@ -1,0 +1,7 @@
+*.pt filter=lfs diff=lfs merge=lfs -text
+*.onnx filter=lfs diff=lfs merge=lfs -text
+*.npz filter=lfs diff=lfs merge=lfs -text
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+*.gif filter=lfs diff=lfs merge=lfs -text
+events.out.tfevents.* filter=lfs diff=lfs merge=lfs -text
+artifacts/**/scalars.csv filter=lfs diff=lfs merge=lfs -text
