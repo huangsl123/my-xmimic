@@ -27,6 +27,26 @@ gym.register(
 )
 
 gym.register(
+    id="Tracking-Flat-DexEVT-Wo-State-Long-Horizon-v0",
+    entry_point="isaaclab.envs:ManagerBasedRLEnv",
+    disable_env_checker=True,
+    kwargs={
+        "env_cfg_entry_point": flat_env_cfg.DexEVTFlatWoStateLongHorizonEnvCfg,
+        "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:DexEVTFlatPPORunnerCfg",
+    },
+)
+
+gym.register(
+    id="Tracking-Flat-DexEVT-State-Feedback-Long-Horizon-v0",
+    entry_point="isaaclab.envs:ManagerBasedRLEnv",
+    disable_env_checker=True,
+    kwargs={
+        "env_cfg_entry_point": flat_env_cfg.DexEVTFlatStateFeedbackLongHorizonEnvCfg,
+        "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:DexEVTFlatPPORunnerCfg",
+    },
+)
+
+gym.register(
     id="Tracking-Flat-DexEVT-Low-Freq-v0",
     entry_point="isaaclab.envs:ManagerBasedRLEnv",
     disable_env_checker=True,

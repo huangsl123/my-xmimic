@@ -24,6 +24,30 @@ def motion_global_anchor_position_error_exp(env: ManagerBasedRLEnv, command_name
     return torch.exp(-error / std**2)
 
 
+def motion_global_anchor_xy_position_error_exp(
+    env: ManagerBasedRLEnv, command_name: str, std: float
+) -> torch.Tensor:
+    """Reward pelvis XY tracking relative to the original global motion path.
+
+    This does not attract the robot to the terrain origin.  The target remains
+    the motion's time-varying pelvis XY position (offset by the environment
+    origin), so any intentional planar translation in the source motion is
+    preserved.
+    """
+    command: MotionCommand = env.command_manager.get_term(command_name)
+    error_xy = command.anchor_pos_w[:, :2] - command.robot_anchor_pos_w[:, :2]
+    return torch.exp(-torch.sum(torch.square(error_xy), dim=-1) / std**2)
+
+
+def motion_global_anchor_xy_velocity_error_exp(
+    env: ManagerBasedRLEnv, command_name: str, std: float
+) -> torch.Tensor:
+    """Reward pelvis XY velocity tracking without constraining absolute position."""
+    command: MotionCommand = env.command_manager.get_term(command_name)
+    error_xy = command.anchor_lin_vel_w[:, :2] - command.robot_anchor_lin_vel_w[:, :2]
+    return torch.exp(-torch.sum(torch.square(error_xy), dim=-1) / std**2)
+
+
 def motion_global_anchor_orientation_error_exp(env: ManagerBasedRLEnv, command_name: str, std: float) -> torch.Tensor:
     command: MotionCommand = env.command_manager.get_term(command_name)
     error = quat_error_magnitude(command.anchor_quat_w, command.robot_anchor_quat_w) ** 2

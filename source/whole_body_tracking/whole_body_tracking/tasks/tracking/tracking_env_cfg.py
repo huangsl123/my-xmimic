@@ -293,6 +293,10 @@ class RewardsCfg:
         weight=1.0,
         params={"command_name": "motion", "std": 0.3},
     )
+    # Optional long-horizon terms.  They are enabled only by the optimized
+    # DexEVT configuration so existing tasks/checkpoints retain their objective.
+    motion_global_anchor_xy_coarse = None
+    motion_global_anchor_xy_vel = None
     motion_global_anchor_ori = RewTerm(
         func=mdp.motion_global_anchor_orientation_error_exp,
         weight=0.5,
@@ -421,6 +425,9 @@ class TrackingEnvCfg(ManagerBasedRLEnvCfg):
         self.sim.physics_material = self.scene.terrain.physics_material
         self.sim.physx.gpu_max_rigid_patch_count = 10 * 2**15
         # viewer settings
-        self.viewer.eye = (1.5, 1.5, 1.5)
-        self.viewer.origin_type = "world"
-        # self.viewer.asset_name = "robot"
+        self.viewer.eye = (2.5, 2.5, 1.8)
+        self.viewer.lookat = (0.0, 0.0, 0.9)
+        # Terrain-generator environment origins can be tens of metres away from
+        # the world origin. Keep the viewer centered on environment 0.
+        self.viewer.origin_type = "env"
+        self.viewer.env_index = 0

@@ -25,6 +25,12 @@ parser.add_argument("--task", type=str, default=None, help="Name of the task.")
 parser.add_argument("--seed", type=int, default=None, help="Seed used for the environment")
 parser.add_argument("--max_iterations", type=int, default=None, help="RL Policy training iterations.")
 parser.add_argument("--motion_file", type=str, required=True, help="Path to the preprocessed motion npz file.")
+parser.add_argument(
+    "--episode_length_s",
+    type=float,
+    default=None,
+    help="Optional training episode length override in seconds.",
+)
 
 # append RSL-RL cli arguments
 cli_args.add_rsl_rl_args(parser)
@@ -106,6 +112,10 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agen
     agent_cfg.max_iterations = (
         args_cli.max_iterations if args_cli.max_iterations is not None else agent_cfg.max_iterations
     )
+    if args_cli.episode_length_s is not None:
+        if args_cli.episode_length_s <= 0.0:
+            raise ValueError("--episode_length_s must be greater than zero")
+        env_cfg.episode_length_s = args_cli.episode_length_s
 
     # set the environment seed
     # note: certain randomizations occur in the environment initialization so we set the seed here

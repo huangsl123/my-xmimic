@@ -15,3 +15,24 @@ dist/
 
 .vscode/
 .idea/
+
+# Local xMimic training outputs
+logs/
+*.log
+*.bak
+__pycache__/
+*.py[cod]
+.vscode/
+
+# Local training outputs
+logs/
+*.log
+*.bak
+__pycache__/
+*.py[cod]
+.vscode/
+
+# Generated training artifacts
+artifacts/
+logs/
+*.log

@@ -15,7 +15,7 @@ class MyOnPolicyRunner(OnPolicyRunner):
         filename = os.path.basename(policy_path.rstrip(os.sep)) + ".onnx"
         export_policy_as_onnx(
             self.alg.policy,
-            normalizer=getattr(self.alg.policy, "actor_obs_normalizer", None),
+            normalizer=getattr(self, "obs_normalizer", None),
             path=policy_path,
             filename=filename,
         )
@@ -35,7 +35,7 @@ class MotionOnPolicyRunner(OnPolicyRunner):
         export_motion_policy_as_onnx(
             self.env.unwrapped,
             self.alg.policy,
-            normalizer=getattr(self.alg.policy, "actor_obs_normalizer", None),
+            normalizer=getattr(self, "obs_normalizer", None),
             path=policy_path,
             filename=filename,
         )

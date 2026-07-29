@@ -5,6 +5,7 @@
 
 import os
 import torch
+from collections.abc import Mapping
 
 import onnx
 
@@ -42,7 +43,9 @@ class _OnnxMotionPolicyExporter(_OnnxPolicyExporter):
         self.time_step_total = self.joint_pos.shape[0]
 
     def forward(self, x, time_step):
-        time_step_clamped = torch.clamp(time_step.long().squeeze(-1), max=self.time_step_total - 1)
+        time_step_clamped = torch.clamp(
+            time_step.long().squeeze(-1), min=0, max=self.time_step_total - 1
+        )
         return (
             self.actor(self.normalizer(x)),
             self.joint_pos[time_step_clamped],
@@ -85,25 +88,39 @@ def list_to_csv_str(arr, *, decimals: int = 3, delimiter: str = ",") -> str:
     )
 
 
-def attach_onnx_metadata(env: ManagerBasedRLEnv, run_path: str, path: str, filename="policy.onnx") -> None:
+def attach_onnx_metadata(
+    env: ManagerBasedRLEnv,
+    run_path: str,
+    path: str,
+    filename="policy.onnx",
+    extra_metadata: Mapping[str, object] | None = None,
+) -> None:
     onnx_path = os.path.join(path, filename)
+    robot_data = env.scene["robot"].data
+    motion_term: MotionCommand = env.command_manager.get_term("motion")
+    default_joint_pos = getattr(robot_data, "default_joint_pos_nominal", robot_data.default_joint_pos[0])
     metadata = {
         "run_path": run_path,
-        "joint_names": env.scene["robot"].data.joint_names,
-        "joint_stiffness": env.scene["robot"].data.joint_stiffness[0].cpu().tolist(),
-        "joint_damping": env.scene["robot"].data.joint_damping[0].cpu().tolist(),
-        "default_joint_pos": env.scene["robot"].data.default_joint_pos_nominal.cpu().tolist(),
+        "joint_names": robot_data.joint_names,
+        "joint_stiffness": robot_data.joint_stiffness[0].cpu().tolist(),
+        "joint_damping": robot_data.joint_damping[0].cpu().tolist(),
+        "default_joint_pos": default_joint_pos.cpu().tolist(),
         "command_names": env.command_manager.active_terms,
         "observation_names": env.observation_manager.active_terms["policy"],
         "action_scale": env.action_manager.get_term("joint_pos")._scale[0].cpu().tolist(),
+        "body_names": motion_term.cfg.body_names,
+        "motion_fps": motion_term.motion.fps,
+        "motion_frame_count": motion_term.motion.time_step_total,
     }
+    if extra_metadata is not None:
+        metadata.update(extra_metadata)
 
     model = onnx.load(onnx_path)
 
     for k, v in metadata.items():
         entry = onnx.StringStringEntryProto()
         entry.key = k
-        entry.value = list_to_csv_str(v) if isinstance(v, list) else str(v)
+        entry.value = list_to_csv_str(v) if isinstance(v, (list, tuple)) else str(v)
         model.metadata_props.append(entry)
 
     onnx.save(model, onnx_path)
