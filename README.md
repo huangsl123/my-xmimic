@@ -97,6 +97,171 @@ python scripts/rsl_rl/train.py --task=Tracking-Flat-DexEVT-Wo-State-Estimation-v
 --headless --logger tensorboard 
 ```
 
+### Dance1 4096 环境长时程优化结果
+
+2026-07-29 完成了 `dance1_easy_named.npz` 的长时程动作模仿训练与完整回放验收。
+动作包含 3972 帧，频率为 100 Hz，总时长为 39.72 秒。
+
+本次优化使用状态反馈长时程任务：
+
+```text
+Tracking-Flat-DexEVT-State-Feedback-Long-Horizon-v0
+```
+
+最终策略在名义 `seed=42` 以及开启训练期随机化的 `seed=0/1/2` 三个鲁棒工况下
+全部通过严格验收：
+
+| 工况 | 完成帧数 | XY 跟踪误差 P95 | 关节位置误差 P95 | 结果 |
+|---|---:|---:|---:|---|
+| nominal seed42 | 3972/3972 | 0.1827 m | 0.6243 | PASS |
+| robust seed0 | 3972/3972 | 0.1986 m | 0.5605 | PASS |
+| robust seed1 | 3972/3972 | 0.2098 m | 0.7131 | PASS |
+| robust seed2 | 3972/3972 | 0.1482 m | 0.5388 | PASS |
+
+四次回放均达到 100% 动作完成率，没有提前终止、动作帧循环或非有限数值。与原始
+50000-iteration 模型相比，四工况平均 XY P95 从 0.8111 m 降至 0.1848 m，
+改善约 77.2%。
+
+机器人不会被奖励函数强制固定在平台中心。长时程配置直接跟踪原动作的世界坐标
+骨盆 XY 位置和速度；距离平台中心只用于平台边界安全检查。原动作骨盆的净 XY
+位移约为 0.4869 m。
+
+#### 原始 50000-iteration 训练
+
+```bash
+python -u scripts/rsl_rl/train.py \
+  --task Tracking-Flat-DexEVT-Wo-State-Estimation-v0 \
+  --num_envs 4096 \
+  --max_iterations 50000 \
+  --device cuda:0 \
+  --motion_file motion_data/dance1_easy_named.npz \
+  --headless \
+  --logger tensorboard \
+  --seed 42 \
+  --resume True \
+  --load_run 2026-07-28_13-37-30_dance1_4096_smoke_fixed \
+  --checkpoint model_9.pt \
+  --run_name dance1_4096_additional_50000_from_model9_fixed
+```
+
+#### 状态反馈初始化与 10 秒 B 分支
+
+先将原模型的 actor 观测从 124 维无状态反馈布局扩展到 130 维状态反馈布局。新增的
+`motion_anchor_pos_b` 和 `base_lin_vel` 输入列初始化为 0，因此转换前后的初始
+actor 输出保持一致：
+
+```bash
+python scripts/expand_checkpoint_for_state_feedback.py \
+  --source logs/rsl_rl/dex_evt_flat/2026-07-28_15-42-13_dance1_4096_additional_50000_from_model9_fixed/model_50008.pt \
+  --output logs/rsl_rl/dex_evt_flat/2026-07-29_state_feedback_init_from_model50008/model_50008.pt \
+  --summary artifacts/2026-07-29_dance1_long_horizon_optimization/state_feedback_checkpoint_expansion.json
+```
+
+随后进行 10 秒时域、500 次状态反馈训练：
+
+```bash
+python -u scripts/rsl_rl/train.py \
+  --task Tracking-Flat-DexEVT-State-Feedback-Long-Horizon-v0 \
+  --num_envs 4096 \
+  --max_iterations 500 \
+  --episode_length_s 10.0 \
+  --device cuda:0 \
+  --motion_file motion_data/dance1_easy_named.npz \
+  --headless \
+  --logger tensorboard \
+  --seed 42 \
+  --resume True \
+  --load_run 2026-07-29_state_feedback_init_from_model50008 \
+  --checkpoint model_50008.pt \
+  --run_name dance1_state_feedback_ab_b_10s_4096_iter500_from50008
+```
+
+#### Stage 1：10 秒时域，追加 1500 次
+
+该阶段增加直接参考关节位置奖励，改善“根节点位置正确但局部舞蹈动作不够忠实”
+的问题。
+
+```bash
+python -u scripts/rsl_rl/train.py \
+  --task Tracking-Flat-DexEVT-State-Feedback-Long-Horizon-v0 \
+  --num_envs 4096 \
+  --max_iterations 1500 \
+  --episode_length_s 10.0 \
+  --device cuda:0 \
+  --motion_file motion_data/dance1_easy_named.npz \
+  --headless \
+  --logger tensorboard \
+  --seed 42 \
+  --resume True \
+  --load_run 2026-07-29_10-50-15_dance1_state_feedback_ab_b_10s_4096_iter500_from50008 \
+  --checkpoint model_50507.pt \
+  --run_name dance1_state_feedback_stage1_10s_4096_additional1500_from_ab_b
+```
+
+#### Stage 2：20 秒时域，追加 1500 次
+
+```bash
+python -u scripts/rsl_rl/train.py \
+  --task Tracking-Flat-DexEVT-State-Feedback-Long-Horizon-v0 \
+  --num_envs 4096 \
+  --max_iterations 1500 \
+  --episode_length_s 20.0 \
+  --device cuda:0 \
+  --motion_file motion_data/dance1_easy_named.npz \
+  --headless \
+  --logger tensorboard \
+  --seed 42 \
+  --resume True \
+  --load_run 2026-07-29_16-34-04_dance1_state_feedback_stage1_10s_4096_additional1500_from_ab_b \
+  --checkpoint model_51000.pt \
+  --run_name dance1_state_feedback_stage2_20s_4096_additional1500_from_stage1_51000
+```
+
+#### Stage 3：完整动作时域，追加 500 次
+
+```bash
+python -u scripts/rsl_rl/train.py \
+  --task Tracking-Flat-DexEVT-State-Feedback-Long-Horizon-v0 \
+  --num_envs 4096 \
+  --max_iterations 500 \
+  --episode_length_s 39.72 \
+  --device cuda:0 \
+  --motion_file motion_data/dance1_easy_named.npz \
+  --headless \
+  --logger tensorboard \
+  --seed 42 \
+  --resume True \
+  --load_run 2026-07-29_17-09-14_dance1_state_feedback_stage2_20s_4096_additional1500_from_stage1_51000 \
+  --checkpoint model_52499.pt \
+  --run_name dance1_state_feedback_stage3_full39p72_4096_additional500_from_stage2_52499
+```
+
+Stage 3 训练过程稳定，但最终完整回放只有 1/4 通过，因此没有直接使用最后一次
+训练快照。最终推理策略使用 Stage 2 两个相邻优质 checkpoint 的权重插值：
+
+```text
+final = 0.75 × model_52000 + 0.25 × model_52499
+```
+
+生成插值模型：
+
+```bash
+python scripts/interpolate_rsl_checkpoints.py \
+  --checkpoint_a logs/rsl_rl/dex_evt_flat/{stage2_run}/model_52000.pt \
+  --checkpoint_b logs/rsl_rl/dex_evt_flat/{stage2_run}/model_52499.pt \
+  --alpha 0.25 \
+  --output logs/rsl_rl/dex_evt_flat/{stage2_run}/model_interp_52000_52499_a025.pt
+```
+
+最终 checkpoint 的 SHA-256 为：
+
+```text
+09bc93df418905b8e5105eea6d8653b05d7963183adb785ab3cd43f33b493928
+```
+
+插值模型适合推理和部署；由于其中保存的 optimizer state 与插值后的模型权重不完全
+对应，不建议直接从插值模型续训。如需继续训练，应从 Stage 2 的两个端点开始。
+
 ### 策略评估
 
 - 使用以下命令运行训练好的 policy:
@@ -106,6 +271,20 @@ python scripts/rsl_rl/play.py \
 --task=Tracking-Flat-DexEVT-Wo-State-Estimation-v0 --num_envs=2 \
 --load_run={run_folder_regex} --checkpoint={checkpoint_regex} \
 --motion_file motion_data/{motion_name}.npz
+```
+
+完整动作、1.0 倍正常速度回放：
+
+```bash
+python scripts/rsl_rl/play.py \
+  --task Tracking-Flat-DexEVT-State-Feedback-Long-Horizon-v0 \
+  --num_envs 1 \
+  --load_run {stage2_run} \
+  --checkpoint model_interp_52000_52499_a025.pt \
+  --motion_file motion_data/dance1_easy_named.npz \
+  --play_full_motion \
+  --playback_speed 1.0 \
+  --seed 42
 ```
 
 ### 启动 MuJoCo 仿真
