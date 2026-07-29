@@ -1,0 +1,351 @@
+{
+  "run_dir": "/home/eai/my project/my-xmimic/xMimic/logs/rsl_rl/dex_evt_flat/2026-07-28_15-42-13_dance1_4096_additional_50000_from_model9_fixed",
+  "snapshot_time": "2026-07-28T22:37:20.536287+08:00",
+  "current_step": 25174,
+  "start_step": 9,
+  "planned_final_step": 50008,
+  "max_iterations": 50000,
+  "completed_iterations": 25166,
+  "remaining_iterations": 24834,
+  "progress": {
+    "fraction": 0.50332,
+    "percent": 50.332
+  },
+  "eta": {
+    "seconds_per_iteration_recent_mean": 0.9763815021514892,
+    "window": 100,
+    "source": "Perf/collection time + Perf/learning_time",
+    "remaining_seconds": 24247.458224430084,
+    "remaining_human": "06:44:07",
+    "estimated_completion_time": "2026-07-29T05:21:27.994511+08:00"
+  },
+  "metrics_recent_mean": {
+    "reward": 21.959137229919435,
+    "episode_length": 499.6822994995117,
+    "anchor_pos": 0.002083333395421505,
+    "ee_body_pos": 0.007083333544433117
+  },
+  "metrics_recent_count": {
+    "reward": 100,
+    "episode_length": 100,
+    "anchor_pos": 100,
+    "ee_body_pos": 100
+  },
+  "all_scalars_finite": true,
+  "scalar_tag_count": 37,
+  "scalar_value_count": 931140,
+  "non_finite_scalar_count": 0,
+  "non_finite_scalar_examples": [],
+  "event_files": [
+    "events.out.tfevents.1785224543.eai-pro.56645.0"
+  ],
+  "checkpoint_count": 50,
+  "checkpoints": [
+    {
+      "iteration": 500,
+      "name": "model_500.pt",
+      "size_bytes": 6907235,
+      "modified_time": "2026-07-28T15:50:49.376209+08:00"
+    },
+    {
+      "iteration": 1000,
+      "name": "model_1000.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T15:59:17.122599+08:00"
+    },
+    {
+      "iteration": 1500,
+      "name": "model_1500.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T16:07:38.462468+08:00"
+    },
+    {
+      "iteration": 2000,
+      "name": "model_2000.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T16:15:58.078151+08:00"
+    },
+    {
+      "iteration": 2500,
+      "name": "model_2500.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T16:24:18.001550+08:00"
+    },
+    {
+      "iteration": 3000,
+      "name": "model_3000.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T16:32:34.736057+08:00"
+    },
+    {
+      "iteration": 3500,
+      "name": "model_3500.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T16:40:52.687782+08:00"
+    },
+    {
+      "iteration": 4000,
+      "name": "model_4000.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T16:49:08.215804+08:00"
+    },
+    {
+      "iteration": 4500,
+      "name": "model_4500.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T16:57:24.854023+08:00"
+    },
+    {
+      "iteration": 5000,
+      "name": "model_5000.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T17:05:40.056053+08:00"
+    },
+    {
+      "iteration": 5500,
+      "name": "model_5500.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T17:13:55.446822+08:00"
+    },
+    {
+      "iteration": 6000,
+      "name": "model_6000.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T17:22:10.070865+08:00"
+    },
+    {
+      "iteration": 6500,
+      "name": "model_6500.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T17:30:25.044540+08:00"
+    },
+    {
+      "iteration": 7000,
+      "name": "model_7000.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T17:38:40.002547+08:00"
+    },
+    {
+      "iteration": 7500,
+      "name": "model_7500.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T17:46:55.771217+08:00"
+    },
+    {
+      "iteration": 8000,
+      "name": "model_8000.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T17:55:11.541758+08:00"
+    },
+    {
+      "iteration": 8500,
+      "name": "model_8500.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T18:03:27.468620+08:00"
+    },
+    {
+      "iteration": 9000,
+      "name": "model_9000.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T18:11:42.430343+08:00"
+    },
+    {
+      "iteration": 9500,
+      "name": "model_9500.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T18:19:57.638448+08:00"
+    },
+    {
+      "iteration": 10000,
+      "name": "model_10000.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T18:28:13.219941+08:00"
+    },
+    {
+      "iteration": 10500,
+      "name": "model_10500.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T18:36:27.895503+08:00"
+    },
+    {
+      "iteration": 11000,
+      "name": "model_11000.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T18:44:43.704055+08:00"
+    },
+    {
+      "iteration": 11500,
+      "name": "model_11500.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T18:52:58.185410+08:00"
+    },
+    {
+      "iteration": 12000,
+      "name": "model_12000.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T19:01:13.315458+08:00"
+    },
+    {
+      "iteration": 12500,
+      "name": "model_12500.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T19:09:28.387766+08:00"
+    },
+    {
+      "iteration": 13000,
+      "name": "model_13000.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T19:17:42.703520+08:00"
+    },
+    {
+      "iteration": 13500,
+      "name": "model_13500.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T19:25:56.382120+08:00"
+    },
+    {
+      "iteration": 14000,
+      "name": "model_14000.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T19:34:08.791649+08:00"
+    },
+    {
+      "iteration": 14500,
+      "name": "model_14500.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T19:42:20.155146+08:00"
+    },
+    {
+      "iteration": 15000,
+      "name": "model_15000.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T19:50:31.719595+08:00"
+    },
+    {
+      "iteration": 15500,
+      "name": "model_15500.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T19:58:43.625370+08:00"
+    },
+    {
+      "iteration": 16000,
+      "name": "model_16000.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T20:06:56.015668+08:00"
+    },
+    {
+      "iteration": 16500,
+      "name": "model_16500.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T20:15:07.633773+08:00"
+    },
+    {
+      "iteration": 17000,
+      "name": "model_17000.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T20:23:19.804467+08:00"
+    },
+    {
+      "iteration": 17500,
+      "name": "model_17500.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T20:31:31.656397+08:00"
+    },
+    {
+      "iteration": 18000,
+      "name": "model_18000.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T20:39:43.257804+08:00"
+    },
+    {
+      "iteration": 18500,
+      "name": "model_18500.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T20:47:55.063396+08:00"
+    },
+    {
+      "iteration": 19000,
+      "name": "model_19000.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T20:56:07.303417+08:00"
+    },
+    {
+      "iteration": 19500,
+      "name": "model_19500.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T21:04:19.063246+08:00"
+    },
+    {
+      "iteration": 20000,
+      "name": "model_20000.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T21:12:30.145950+08:00"
+    },
+    {
+      "iteration": 20500,
+      "name": "model_20500.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T21:20:42.404001+08:00"
+    },
+    {
+      "iteration": 21000,
+      "name": "model_21000.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T21:28:53.451411+08:00"
+    },
+    {
+      "iteration": 21500,
+      "name": "model_21500.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T21:37:04.902059+08:00"
+    },
+    {
+      "iteration": 22000,
+      "name": "model_22000.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T21:45:16.530516+08:00"
+    },
+    {
+      "iteration": 22500,
+      "name": "model_22500.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T21:53:28.135900+08:00"
+    },
+    {
+      "iteration": 23000,
+      "name": "model_23000.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T22:01:40.235402+08:00"
+    },
+    {
+      "iteration": 23500,
+      "name": "model_23500.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T22:09:52.708309+08:00"
+    },
+    {
+      "iteration": 24000,
+      "name": "model_24000.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T22:18:05.323960+08:00"
+    },
+    {
+      "iteration": 24500,
+      "name": "model_24500.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T22:26:17.241505+08:00"
+    },
+    {
+      "iteration": 25000,
+      "name": "model_25000.pt",
+      "size_bytes": 6907399,
+      "modified_time": "2026-07-28T22:34:28.700009+08:00"
+    }
+  ],
+  "latest_checkpoint": {
+    "iteration": 25000,
+    "name": "model_25000.pt",
+    "size_bytes": 6907399,
+    "modified_time": "2026-07-28T22:34:28.700009+08:00"
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "run_dir": "/home/eai/my project/my-xmimic/xMimic/logs/rsl_rl/dex_evt_flat/2026-07-28_15-42-13_dance1_4096_additional_50000_from_model9_fixed",
+  "snapshot_time": "2026-07-28T17:09:18.341040+08:00",
+  "current_step": 5220,
+  "start_step": 9,
+  "planned_final_step": 50008,
+  "max_iterations": 50000,
+  "completed_iterations": 5212,
+  "remaining_iterations": 44788,
+  "progress": {
+    "fraction": 0.10424,
+    "percent": 10.424
+  },
+  "eta": {
+    "seconds_per_iteration_recent_mean": 0.983652651309967,
+    "window": 100,
+    "source": "Perf/collection time + Perf/learning_time",
+    "remaining_seconds": 44055.834946870804,
+    "remaining_human": "12:14:16",
+    "estimated_completion_time": "2026-07-29T05:23:34.175987+08:00"
+  },
+  "metrics_recent_mean": {
+    "reward": 20.27720777511597,
+    "episode_length": 498.7467010498047,
+    "anchor_pos": 0.01833333384245634,
+    "ee_body_pos": 0.017916667200624944
+  },
+  "metrics_recent_count": {
+    "reward": 100,
+    "episode_length": 100,
+    "anchor_pos": 100,
+    "ee_body_pos": 100
+  },
+  "all_scalars_finite": true,
+  "scalar_tag_count": 37,
+  "scalar_value_count": 192842,
+  "non_finite_scalar_count": 0,
+  "non_finite_scalar_examples": [],
+  "event_files": [
+    "events.out.tfevents.1785224543.eai-pro.56645.0"
+  ],
+  "checkpoint_count": 10,
+  "checkpoints": [
+    {
+      "iteration": 500,
+      "name": "model_500.pt",
+      "size_bytes": 6907235,
+      "modified_time": "2026-07-28T15:50:49.376209+08:00"
+    },
+    {
+      "iteration": 1000,
+      "name": "model_1000.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T15:59:17.122599+08:00"
+    },
+    {
+      "iteration": 1500,
+      "name": "model_1500.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T16:07:38.462468+08:00"
+    },
+    {
+      "iteration": 2000,
+      "name": "model_2000.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T16:15:58.078151+08:00"
+    },
+    {
+      "iteration": 2500,
+      "name": "model_2500.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T16:24:18.001550+08:00"
+    },
+    {
+      "iteration": 3000,
+      "name": "model_3000.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T16:32:34.736057+08:00"
+    },
+    {
+      "iteration": 3500,
+      "name": "model_3500.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T16:40:52.687782+08:00"
+    },
+    {
+      "iteration": 4000,
+      "name": "model_4000.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T16:49:08.215804+08:00"
+    },
+    {
+      "iteration": 4500,
+      "name": "model_4500.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T16:57:24.854023+08:00"
+    },
+    {
+      "iteration": 5000,
+      "name": "model_5000.pt",
+      "size_bytes": 6907317,
+      "modified_time": "2026-07-28T17:05:40.056053+08:00"
+    }
+  ],
+  "latest_checkpoint": {
+    "iteration": 5000,
+    "name": "model_5000.pt",
+    "size_bytes": 6907317,
+    "modified_time": "2026-07-28T17:05:40.056053+08:00"
+  }
+}

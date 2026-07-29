@@ -1,0 +1,35 @@
+{
+  "evaluations": [
+    {
+      "label": "baseline_model9",
+      "logged_steps": 122,
+      "simulated_duration_s": 1.220000000000001,
+      "motion_completion_fraction": 0.030715005035246726,
+      "motion_completed": false,
+      "terminal_terms": "anchor_pos",
+      "all_metrics_finite": true,
+      "started_near_platform_center": true,
+      "reward_mean": 0.043566715584159636,
+      "reward_p95": 0.05365161597728729,
+      "anchor_pos_mean": 0.16874864189847072,
+      "anchor_pos_p95": 0.5273481011390686,
+      "anchor_pos_max": 0.6232514977455139,
+      "body_pos_mean": 0.08971678381708782,
+      "body_pos_p95": 0.27575555443763733,
+      "body_pos_max": 0.33831197023391724,
+      "joint_pos_mean": 0.5308295400305227,
+      "joint_pos_p95": 1.0062686204910278,
+      "joint_pos_max": 1.09857976436615,
+      "max_distance_from_center_m": 0.5738252653723298,
+      "xy_tracking_drift_p95_m": 0.49131914736339427,
+      "xy_tracking_drift_max_m": 0.5738252668674421,
+      "acceptance_pass": false
+    }
+  ],
+  "passed": [],
+  "failed": [
+    "baseline_model9"
+  ],
+  "pass_count": 0,
+  "evaluation_count": 1
+}

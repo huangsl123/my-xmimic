@@ -1,0 +1,38 @@
+{
+  "checkpoint": "/home/eai/my project/my-xmimic/xMimic/logs/rsl_rl/dex_evt_flat/2026-07-28_15-42-13_dance1_4096_additional_50000_from_model9_fixed/model_50008.pt",
+  "sha256": "e27c5aab5a6040414c464c38a4ba912f048be33fd76c6ebd0d7672c9d5b5696f",
+  "size_bytes": 6907399,
+  "iteration": 50008,
+  "top_level_keys": [
+    "infos",
+    "iter",
+    "model_state_dict",
+    "obs_norm_state_dict",
+    "optimizer_state_dict",
+    "privileged_obs_norm_state_dict"
+  ],
+  "tensor_count": 76,
+  "tensor_element_count": 1721122,
+  "non_finite_tensor_paths": [],
+  "model_tensor_count": 17,
+  "actor_observation_size": 124,
+  "critic_observation_size": 346,
+  "action_size": 23,
+  "actor_normalizer_count": 100003840.0,
+  "critic_normalizer_count": 100003840.0,
+  "optimizer_learning_rates": [
+    5.062500000000001e-05
+  ],
+  "checks": {
+    "required_keys_present": true,
+    "iteration_matches": true,
+    "all_floating_tensors_finite": true,
+    "actor_observation_size_is_124": true,
+    "critic_observation_size_is_346": true,
+    "action_size_is_23": true,
+    "actor_normalizer_size_is_124": true,
+    "critic_normalizer_size_is_346": true,
+    "optimizer_has_one_parameter_group": true,
+    "all_passed": true
+  }
+}

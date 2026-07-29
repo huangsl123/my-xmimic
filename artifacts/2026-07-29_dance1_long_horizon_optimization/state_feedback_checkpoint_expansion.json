@@ -1,0 +1,86 @@
+{
+  "source": "/home/eai/my project/my-xmimic/xMimic/logs/rsl_rl/dex_evt_flat/2026-07-28_15-42-13_dance1_4096_additional_50000_from_model9_fixed/model_50008.pt",
+  "source_sha256": "e27c5aab5a6040414c464c38a4ba912f048be33fd76c6ebd0d7672c9d5b5696f",
+  "output": "/home/eai/my project/my-xmimic/xMimic/logs/rsl_rl/dex_evt_flat/2026-07-29_state_feedback_init_from_model50008/model_50008.pt",
+  "output_sha256": "f4d085682d17b0292c24790900400aff2888eb239e0924591844c684f5af7e3f",
+  "checkpoint_iteration": 50008,
+  "old_observation_size": 124,
+  "new_observation_size": 130,
+  "old_terms": [
+    {
+      "name": "command",
+      "width": 46
+    },
+    {
+      "name": "motion_anchor_ori_b",
+      "width": 6
+    },
+    {
+      "name": "base_ang_vel",
+      "width": 3
+    },
+    {
+      "name": "joint_pos",
+      "width": 23
+    },
+    {
+      "name": "joint_vel",
+      "width": 23
+    },
+    {
+      "name": "actions",
+      "width": 23
+    }
+  ],
+  "new_terms": [
+    {
+      "name": "command",
+      "width": 46
+    },
+    {
+      "name": "motion_anchor_pos_b",
+      "width": 3
+    },
+    {
+      "name": "motion_anchor_ori_b",
+      "width": 6
+    },
+    {
+      "name": "base_lin_vel",
+      "width": 3
+    },
+    {
+      "name": "base_ang_vel",
+      "width": 3
+    },
+    {
+      "name": "joint_pos",
+      "width": 23
+    },
+    {
+      "name": "joint_vel",
+      "width": 23
+    },
+    {
+      "name": "actions",
+      "width": 23
+    }
+  ],
+  "inserted_terms": [
+    "motion_anchor_pos_b",
+    "base_lin_vel"
+  ],
+  "new_actor_columns_are_zero": true,
+  "maximum_initial_action_difference": 0.0,
+  "optimizer_moment_tensors_expanded": 2,
+  "actor_normalizer_count": 100003840,
+  "checks": {
+    "checkpoint_iteration_preserved": true,
+    "actor_output_preserved": true,
+    "actor_input_shape_is_130": true,
+    "actor_normalizer_shape_is_130": true,
+    "critic_shape_unchanged": true,
+    "optimizer_moments_expanded": true,
+    "all_passed": true
+  }
+}
