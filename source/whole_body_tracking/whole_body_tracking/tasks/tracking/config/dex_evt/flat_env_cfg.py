@@ -27,6 +27,11 @@ def _configure_long_horizon_tracking(cfg: TrackingEnvCfg) -> None:
         weight=0.75,
         params={"command_name": "motion", "std": 0.5},
     )
+    cfg.rewards.motion_joint_pos = RewTerm(
+        func=mdp.motion_joint_position_error_exp,
+        weight=0.5,
+        params={"command_name": "motion", "std": 1.0},
+    )
 
 
 class DexEVTFlatEnvConfig(TrackingEnvCfg):

@@ -1,0 +1,16 @@
+{
+  "formula": "(1-alpha)*checkpoint_a + alpha*checkpoint_b",
+  "alpha": 0.75,
+  "checkpoint_a": "/home/eai/my project/my-xmimic/xMimic/logs/rsl_rl/dex_evt_flat/2026-07-29_17-09-14_dance1_state_feedback_stage2_20s_4096_additional1500_from_stage1_51000/model_52000.pt",
+  "checkpoint_a_sha256": "cb67990abb75c4e0386937915ac40cc6c23622dab4e8fc4d77a970b7d51fae6e",
+  "checkpoint_a_iteration": 52000,
+  "checkpoint_b": "/home/eai/my project/my-xmimic/xMimic/logs/rsl_rl/dex_evt_flat/2026-07-29_17-09-14_dance1_state_feedback_stage2_20s_4096_additional1500_from_stage1_51000/model_52499.pt",
+  "checkpoint_b_sha256": "47ae4b9b12cf122104a3548779cd8d9a21ccdb1b7d5a06af0d863e75dfd8ace5",
+  "checkpoint_b_iteration": 52499,
+  "optimizer_state_source": "checkpoint_b",
+  "resume_training_recommended": false,
+  "output": "/home/eai/my project/my-xmimic/xMimic/logs/rsl_rl/dex_evt_flat/2026-07-29_17-09-14_dance1_state_feedback_stage2_20s_4096_additional1500_from_stage1_51000/model_interp_52000_52499_a075.pt",
+  "output_sha256": "4f57472cc8a703799c0550f250b5fe3e055de5ed62e57f9e1dd4760f704fa117",
+  "model_tensor_count": 17,
+  "all_model_tensors_finite": true
+}

@@ -1,0 +1,102 @@
+{
+  "criteria": {
+    "nominal": {
+      "xy_p95_max_m": 0.2,
+      "xy_max_m": 0.35,
+      "xy_last_m": 0.25,
+      "initial_stationary_xy_max_m": 0.15
+    },
+    "robust": {
+      "xy_p95_max_m": 0.25,
+      "xy_max_m": 0.5,
+      "xy_last_m": 0.35,
+      "initial_stationary_xy_max_m": 0.25
+    },
+    "shared": {
+      "platform_center_distance_safety_max_m": 1.0,
+      "body_pos_p95_max_m": 0.08,
+      "joint_pos_p95_max_rad_norm": 0.9,
+      "anchor_rot_p95_max_rad": 0.15,
+      "stationary_tail_xy_increase_max_m": 0.05,
+      "stationary_tail_xy_slope_max_m_per_s": 0.01,
+      "motion_wrap_count": 0
+    }
+  },
+  "evaluations": [
+    {
+      "label": "robust_seed1",
+      "logged_steps": 3972,
+      "motion_total_frames": 3972,
+      "simulated_duration_s": 39.71999999999915,
+      "motion_completion_fraction": 1.0,
+      "motion_completed": true,
+      "exact_motion_frame_sequence": true,
+      "terminal_terms": "",
+      "all_metrics_finite": true,
+      "no_motion_wrap": true,
+      "started_near_platform_center": true,
+      "reward_mean": 0.0746222829534358,
+      "reward_p95": 0.08036322444677353,
+      "anchor_pos_mean": 0.11101431925316817,
+      "anchor_pos_p95": 0.27856499105691884,
+      "anchor_pos_max": 0.40336132049560547,
+      "anchor_rot_p95": 0.13213210478425025,
+      "body_pos_mean": 0.043501973334931526,
+      "body_pos_p95": 0.06410849839448927,
+      "body_pos_max": 0.0851822942495346,
+      "joint_pos_mean": 0.43050830837898146,
+      "joint_pos_p95": 0.674785715341568,
+      "joint_pos_max": 1.1560872793197632,
+      "max_distance_from_center_m": 0.8639926417893896,
+      "xy_tracking_drift_p95_m": 0.27752527133198146,
+      "xy_tracking_drift_max_m": 0.4026429527947532,
+      "xy_tracking_drift_last_m": 0.23886217444398977,
+      "initial_stationary_xy_max_m": 0.09342073505720637,
+      "stationary_tail_xy_increase_m": 0.14241572874447145,
+      "stationary_tail_xy_slope_m_per_s": 0.04662545277713849,
+      "acceptance_profile": "robust",
+      "acceptance_pass": false
+    },
+    {
+      "label": "robust_seed0",
+      "logged_steps": 3972,
+      "motion_total_frames": 3972,
+      "simulated_duration_s": 39.71999999999915,
+      "motion_completion_fraction": 1.0,
+      "motion_completed": true,
+      "exact_motion_frame_sequence": true,
+      "terminal_terms": "",
+      "all_metrics_finite": true,
+      "no_motion_wrap": true,
+      "started_near_platform_center": true,
+      "reward_mean": 0.0759041087339892,
+      "reward_p95": 0.08107079602777958,
+      "anchor_pos_mean": 0.10874103484900674,
+      "anchor_pos_p95": 0.30007854700088493,
+      "anchor_pos_max": 0.41163358092308044,
+      "anchor_rot_p95": 0.11256065368652343,
+      "body_pos_mean": 0.034486217684156335,
+      "body_pos_p95": 0.061168622970581045,
+      "body_pos_max": 0.09182588756084442,
+      "joint_pos_mean": 0.3815621231820468,
+      "joint_pos_p95": 0.6472580105066298,
+      "joint_pos_max": 1.1086950302124023,
+      "max_distance_from_center_m": 0.7220136545175722,
+      "xy_tracking_drift_p95_m": 0.2988292178106214,
+      "xy_tracking_drift_max_m": 0.4116093883865343,
+      "xy_tracking_drift_last_m": 0.012311071948125156,
+      "initial_stationary_xy_max_m": 0.20145599380606474,
+      "stationary_tail_xy_increase_m": -0.017371786360493607,
+      "stationary_tail_xy_slope_m_per_s": -0.004116863419057508,
+      "acceptance_profile": "robust",
+      "acceptance_pass": false
+    }
+  ],
+  "passed": [],
+  "failed": [
+    "robust_seed1",
+    "robust_seed0"
+  ],
+  "pass_count": 0,
+  "evaluation_count": 2
+}

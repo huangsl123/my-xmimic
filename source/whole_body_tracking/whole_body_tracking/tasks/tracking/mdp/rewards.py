@@ -48,6 +48,15 @@ def motion_global_anchor_xy_velocity_error_exp(
     return torch.exp(-torch.sum(torch.square(error_xy), dim=-1) / std**2)
 
 
+def motion_joint_position_error_exp(
+    env: ManagerBasedRLEnv, command_name: str, std: float
+) -> torch.Tensor:
+    """Reward direct joint-angle fidelity to the source motion."""
+    command: MotionCommand = env.command_manager.get_term(command_name)
+    error = torch.sum(torch.square(command.joint_pos - command.robot_joint_pos), dim=-1)
+    return torch.exp(-error / std**2)
+
+
 def motion_global_anchor_orientation_error_exp(env: ManagerBasedRLEnv, command_name: str, std: float) -> torch.Tensor:
     command: MotionCommand = env.command_manager.get_term(command_name)
     error = quat_error_magnitude(command.anchor_quat_w, command.robot_anchor_quat_w) ** 2

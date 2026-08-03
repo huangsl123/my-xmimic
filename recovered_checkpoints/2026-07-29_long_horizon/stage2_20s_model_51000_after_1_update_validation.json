@@ -1,0 +1,38 @@
+{
+  "checkpoint": "/home/eai/my project/my-xmimic/xMimic/recovered_checkpoints/2026-07-29_long_horizon/stage2_20s_model_51000_after_1_update.pt",
+  "sha256": "5315f3f84ce87b8b8cf92413e57cfd4bca316c66a6e67c87e61a0a5b5fd193a4",
+  "size_bytes": 6944455,
+  "iteration": 51000,
+  "top_level_keys": [
+    "infos",
+    "iter",
+    "model_state_dict",
+    "obs_norm_state_dict",
+    "optimizer_state_dict",
+    "privileged_obs_norm_state_dict"
+  ],
+  "tensor_count": 76,
+  "tensor_element_count": 1730356,
+  "non_finite_tensor_paths": [],
+  "model_tensor_count": 17,
+  "actor_observation_size": 130,
+  "critic_observation_size": 346,
+  "action_size": 23,
+  "actor_normalizer_count": 100003840.0,
+  "critic_normalizer_count": 100003840.0,
+  "optimizer_learning_rates": [
+    1e-05
+  ],
+  "checks": {
+    "required_keys_present": true,
+    "iteration_matches": true,
+    "all_floating_tensors_finite": true,
+    "actor_observation_size_matches_expected": true,
+    "critic_observation_size_matches_expected": true,
+    "action_size_matches_expected": true,
+    "actor_normalizer_size_matches_expected": true,
+    "critic_normalizer_size_matches_expected": true,
+    "optimizer_has_one_parameter_group": true,
+    "all_passed": true
+  }
+}

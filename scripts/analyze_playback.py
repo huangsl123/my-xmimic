@@ -179,6 +179,18 @@ def main() -> None:
             "high_dynamic_22p38_25p38s": tracking_window_stats(time_s, xy_drift, 22.38, 25.38),
             "stop_transition_29p79_31p87s": tracking_window_stats(time_s, xy_drift, 29.79, 31.87),
             "stationary_tail_33p25_39p72s": tracking_window_stats(time_s, xy_drift, 33.25, 39.72),
+            "stationary_tail_first_half_33p25_36p48s": tracking_window_stats(
+                time_s, xy_drift, 33.25, 36.48
+            ),
+            "stationary_tail_second_half_36p49_39p72s": tracking_window_stats(
+                time_s, xy_drift, 36.49, 39.72
+            ),
+            "late_recovery_36p75_39p72s": tracking_window_stats(
+                time_s, xy_drift, 36.75, 39.72
+            ),
+            "very_late_recovery_37p75_39p72s": tracking_window_stats(
+                time_s, xy_drift, 37.75, 39.72
+            ),
         }
 
     motion_wrap_max = (

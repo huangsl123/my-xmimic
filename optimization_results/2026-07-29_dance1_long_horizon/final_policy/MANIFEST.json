@@ -1,0 +1,74 @@
+{
+  "date": "2026-07-29",
+  "status": "selected_for_inference",
+  "task": "Tracking-Flat-DexEVT-State-Feedback-Long-Horizon-v0",
+  "training_num_envs": 4096,
+  "motion": {
+    "path": "motion_data/dance1_easy_named.npz",
+    "sha256": "5c9a59f6ae003df62313bd5a41ec9bb6f4626cca90819a8841cdde9f062127ed",
+    "frames": 3972,
+    "fps": 100,
+    "duration_s": 39.72,
+    "root_xy_net_displacement_m": 0.4869307
+  },
+  "checkpoint": {
+    "path": "checkpoint/final_policy.pt",
+    "sha256": "09bc93df418905b8e5105eea6d8653b05d7963183adb785ab3cd43f33b493928",
+    "size_bytes": 6945611,
+    "iteration_metadata": 52499,
+    "actor_observation_size": 130,
+    "critic_observation_size": 346,
+    "action_size": 23,
+    "all_validation_checks_passed": true,
+    "resume_training_recommended": false
+  },
+  "interpolation": {
+    "formula": "(1-alpha)*checkpoint_a + alpha*checkpoint_b",
+    "alpha": 0.25,
+    "checkpoint_a": "stage2_20s_model_52000.pt",
+    "checkpoint_a_sha256": "cb67990abb75c4e0386937915ac40cc6c23622dab4e8fc4d77a970b7d51fae6e",
+    "checkpoint_b": "stage2_20s_model_52499.pt",
+    "checkpoint_b_sha256": "47ae4b9b12cf122104a3548779cd8d9a21ccdb1b7d5a06af0d863e75dfd8ace5",
+    "normalizers_identical": true
+  },
+  "acceptance": {
+    "path": "acceptance/evaluation_comparison.json",
+    "sha256": "cef35cd5f6ae1302220eeef5206e6d1731a07936c4662287c3ab8828ed3063e2",
+    "passed": 4,
+    "evaluated": 4,
+    "failed": [],
+    "exact_frames_each": 3972,
+    "all_checks_passed": true
+  },
+  "onnx": {
+    "path": "onnx/policy.onnx",
+    "sha256": "436b3522f9746535e28a1fc37f0894729fb6e925d79e998c329c7a8f1a7524a9",
+    "size_bytes": 6631696,
+    "all_validation_checks_passed": true
+  },
+  "video": {
+    "path": "visualization/normal_speed_1x.mp4",
+    "sha256": "4f325686501b05c368873628565a57b96421d6f4abd217d39da023c7d5573f13",
+    "size_bytes": 3297171,
+    "fps": 100,
+    "frames": 3972,
+    "duration_s": 39.72,
+    "resolution": [
+      1280,
+      720
+    ],
+    "playback_speed": 1.0,
+    "all_validation_checks_passed": true
+  },
+  "interactive_replay": {
+    "path": "interactive_1x",
+    "playback_speed": 1.0,
+    "logged_frames": 3972,
+    "duration_s": 39.72,
+    "terminal_terms": [],
+    "motion_wrap_count": 0,
+    "xy_tracking_drift_p95_m": 0.18271477497366753,
+    "joint_position_error_p95": 0.6243187129497527,
+    "strict_acceptance_passed": true
+  }
+}

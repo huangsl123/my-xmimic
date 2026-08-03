@@ -13,6 +13,7 @@ import numpy as np
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.patches import Patch
 
 
 def parse_args() -> argparse.Namespace:
@@ -52,7 +53,7 @@ def flatten_record(label: str, document: dict) -> dict:
     metrics = document["metrics"]
     position = document["platform_position"]
     checks = document["quality_checks"]
-    windows = document.get("xy_tracking_windows", {})
+    windows = document.get("xy_tracking_windows") or {}
     initial_window = windows.get("initial_stationary_0_4p24s", {})
     tail_window = windows.get("stationary_tail_33p25_39p72s", {})
     terminal_terms = document.get("terminal_terms", [])
@@ -90,38 +91,63 @@ def flatten_record(label: str, document: dict) -> dict:
     }
 
 
-def passes_acceptance(record: dict) -> bool:
+def acceptance_failures(record: dict) -> list[str]:
     nominal = str(record["label"]).startswith("nominal")
     xy_p95_limit = 0.20 if nominal else 0.25
     xy_max_limit = 0.35 if nominal else 0.50
     xy_last_limit = 0.25 if nominal else 0.35
     initial_stationary_limit = 0.15 if nominal else 0.25
-    return bool(
-        record["motion_completed"]
-        and record["exact_motion_frame_sequence"]
-        and record["motion_total_frames"] is not None
-        and record["logged_steps"] == record["motion_total_frames"]
-        and not record["terminal_terms"]
-        and record["all_metrics_finite"]
-        and record["no_motion_wrap"] is True
-        and record["started_near_platform_center"]
-        and record["max_distance_from_center_m"] < 1.0
-        and record["body_pos_p95"] <= 0.08
-        and record["joint_pos_p95"] <= 0.90
-        and record["anchor_rot_p95"] <= 0.15
-        and record["xy_tracking_drift_p95_m"] is not None
-        and record["xy_tracking_drift_p95_m"] <= xy_p95_limit
-        and record["xy_tracking_drift_max_m"] is not None
-        and record["xy_tracking_drift_max_m"] <= xy_max_limit
-        and record["xy_tracking_drift_last_m"] is not None
-        and record["xy_tracking_drift_last_m"] <= xy_last_limit
-        and record["initial_stationary_xy_max_m"] is not None
-        and record["initial_stationary_xy_max_m"] <= initial_stationary_limit
-        and record["stationary_tail_xy_increase_m"] is not None
-        and record["stationary_tail_xy_increase_m"] <= 0.05
-        and record["stationary_tail_xy_slope_m_per_s"] is not None
-        and record["stationary_tail_xy_slope_m_per_s"] <= 0.01
-    )
+
+    def at_most(value: float | None, limit: float) -> bool:
+        return value is not None and value <= limit
+
+    checks = [
+        ("motion_completed", bool(record["motion_completed"])),
+        ("exact_motion_frame_sequence", bool(record["exact_motion_frame_sequence"])),
+        ("motion_total_frames_present", record["motion_total_frames"] is not None),
+        (
+            "logged_steps_match_motion",
+            record["motion_total_frames"] is not None
+            and record["logged_steps"] == record["motion_total_frames"],
+        ),
+        ("no_terminal_terms", not record["terminal_terms"]),
+        ("all_metrics_finite", bool(record["all_metrics_finite"])),
+        ("no_motion_wrap", record["no_motion_wrap"] is True),
+        ("started_near_platform_center", bool(record["started_near_platform_center"])),
+        ("platform_center_safety", record["max_distance_from_center_m"] < 1.0),
+        ("body_pos_p95", at_most(record["body_pos_p95"], 0.08)),
+        ("joint_pos_p95", at_most(record["joint_pos_p95"], 0.90)),
+        ("anchor_rot_p95", at_most(record["anchor_rot_p95"], 0.15)),
+        (
+            "xy_tracking_drift_p95",
+            at_most(record["xy_tracking_drift_p95_m"], xy_p95_limit),
+        ),
+        (
+            "xy_tracking_drift_max",
+            at_most(record["xy_tracking_drift_max_m"], xy_max_limit),
+        ),
+        (
+            "xy_tracking_drift_last",
+            at_most(record["xy_tracking_drift_last_m"], xy_last_limit),
+        ),
+        (
+            "initial_stationary_xy_max",
+            at_most(record["initial_stationary_xy_max_m"], initial_stationary_limit),
+        ),
+        (
+            "stationary_tail_xy_increase",
+            at_most(record["stationary_tail_xy_increase_m"], 0.05),
+        ),
+        (
+            "stationary_tail_xy_slope",
+            at_most(record["stationary_tail_xy_slope_m_per_s"], 0.01),
+        ),
+    ]
+    return [name for name, passed in checks if not passed]
+
+
+def passes_acceptance(record: dict) -> bool:
+    return not acceptance_failures(record)
 
 
 def write_csv(path: Path, records: list[dict]) -> None:
@@ -131,9 +157,29 @@ def write_csv(path: Path, records: list[dict]) -> None:
         writer.writerows(records)
 
 
-def bar_chart(axis: plt.Axes, labels: list[str], values: list[float], title: str, ylabel: str) -> None:
+def bar_chart(
+    axis: plt.Axes,
+    labels: list[str],
+    values: list[float],
+    title: str,
+    ylabel: str,
+    *,
+    colors: list[str] | None = None,
+    limits: list[float] | None = None,
+) -> None:
     positions = np.arange(len(labels))
-    axis.bar(positions, values, color="#2b6cb0")
+    axis.bar(positions, values, color=colors or "#2b6cb0")
+    if limits is not None:
+        axis.plot(
+            positions,
+            limits,
+            linestyle="none",
+            marker="_",
+            markersize=22,
+            markeredgewidth=2.5,
+            color="#1a202c",
+            label="Acceptance limit",
+        )
     axis.set_xticks(positions, labels, rotation=20, ha="right")
     axis.set_title(title)
     axis.set_ylabel(ylabel)
@@ -149,7 +195,8 @@ def main() -> None:
         record["acceptance_profile"] = (
             "nominal" if str(record["label"]).startswith("nominal") else "robust"
         )
-        record["acceptance_pass"] = passes_acceptance(record)
+        record["failed_checks"] = acceptance_failures(record)
+        record["acceptance_pass"] = not record["failed_checks"]
 
     write_csv(args.output_dir / "evaluation_comparison.csv", records)
     comparison = {
@@ -188,21 +235,45 @@ def main() -> None:
     )
 
     labels = [record["label"] for record in records]
-    figure, axes = plt.subplots(2, 2, figsize=(15, 10), constrained_layout=True)
+    result_colors = [
+        "#38a169" if record["acceptance_pass"] else "#c53030" for record in records
+    ]
+    shared_limits = comparison["criteria"]["shared"]
+    xy_limits = [
+        (
+            comparison["criteria"]["nominal"]["xy_p95_max_m"]
+            if record["acceptance_profile"] == "nominal"
+            else comparison["criteria"]["robust"]["xy_p95_max_m"]
+        )
+        for record in records
+    ]
+    figure, axes = plt.subplots(2, 3, figsize=(18, 10), constrained_layout=True)
     bar_chart(
         axes[0, 0],
         labels,
         [100.0 * float(record["motion_completion_fraction"] or 0.0) for record in records],
         "Motion completion",
         "Percent",
+        colors=result_colors,
+        limits=[100.0] * len(records),
     )
-    axes[0, 0].axhline(100.0, color="#38a169", linestyle="--", linewidth=1.5)
     bar_chart(
         axes[0, 1],
         labels,
-        [float(record["anchor_pos_p95"]) for record in records],
-        "Anchor position error p95",
-        "Error (m)",
+        [float(record["xy_tracking_drift_p95_m"] or 0.0) for record in records],
+        "XY reference drift p95",
+        "Distance (m)",
+        colors=result_colors,
+        limits=xy_limits,
+    )
+    bar_chart(
+        axes[0, 2],
+        labels,
+        [float(record["joint_pos_p95"]) for record in records],
+        "Joint position error p95",
+        "L2 norm (rad)",
+        colors=result_colors,
+        limits=[shared_limits["joint_pos_p95_max_rad_norm"]] * len(records),
     )
     bar_chart(
         axes[1, 0],
@@ -210,17 +281,46 @@ def main() -> None:
         [float(record["body_pos_p95"]) for record in records],
         "Mean body position error p95",
         "Error (m)",
+        colors=result_colors,
+        limits=[shared_limits["body_pos_p95_max_m"]] * len(records),
     )
     bar_chart(
         axes[1, 1],
         labels,
-        [float(record["xy_tracking_drift_p95_m"] or 0.0) for record in records],
-        "XY reference drift p95",
-        "Distance (m)",
+        [float(record["anchor_rot_p95"]) for record in records],
+        "Anchor orientation error p95",
+        "Error (rad)",
+        colors=result_colors,
+        limits=[shared_limits["anchor_rot_p95_max_rad"]] * len(records),
     )
-    axes[1, 1].axhline(0.25, color="#c53030", linestyle="--", linewidth=1.5, label="0.25 m criterion")
-    axes[1, 1].legend()
-    figure.suptitle("Policy playback comparison", fontsize=16)
+    bar_chart(
+        axes[1, 2],
+        labels,
+        [float(record["stationary_tail_xy_slope_m_per_s"] or 0.0) for record in records],
+        "Stationary-tail XY drift slope",
+        "Slope (m/s)",
+        colors=result_colors,
+        limits=[shared_limits["stationary_tail_xy_slope_max_m_per_s"]] * len(records),
+    )
+    figure.legend(
+        handles=[
+            Patch(facecolor="#38a169", label="All strict checks passed"),
+            Patch(facecolor="#c53030", label="One or more strict checks failed"),
+            plt.Line2D(
+                [0],
+                [0],
+                linestyle="none",
+                marker="_",
+                markersize=18,
+                markeredgewidth=2.5,
+                color="#1a202c",
+                label="Metric acceptance limit",
+            ),
+        ],
+        loc="outside upper center",
+        ncols=3,
+        title="Strict full-motion acceptance dashboard",
+    )
     figure.savefig(args.output_dir / "evaluation_comparison.png", dpi=180)
     plt.close(figure)
 

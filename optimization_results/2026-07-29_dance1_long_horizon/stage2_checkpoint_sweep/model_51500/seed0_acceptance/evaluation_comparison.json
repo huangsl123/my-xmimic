@@ -1,0 +1,68 @@
+{
+  "criteria": {
+    "nominal": {
+      "xy_p95_max_m": 0.2,
+      "xy_max_m": 0.35,
+      "xy_last_m": 0.25,
+      "initial_stationary_xy_max_m": 0.15
+    },
+    "robust": {
+      "xy_p95_max_m": 0.25,
+      "xy_max_m": 0.5,
+      "xy_last_m": 0.35,
+      "initial_stationary_xy_max_m": 0.25
+    },
+    "shared": {
+      "platform_center_distance_safety_max_m": 1.0,
+      "body_pos_p95_max_m": 0.08,
+      "joint_pos_p95_max_rad_norm": 0.9,
+      "anchor_rot_p95_max_rad": 0.15,
+      "stationary_tail_xy_increase_max_m": 0.05,
+      "stationary_tail_xy_slope_max_m_per_s": 0.01,
+      "motion_wrap_count": 0
+    }
+  },
+  "evaluations": [
+    {
+      "label": "robust_seed0",
+      "logged_steps": 3972,
+      "motion_total_frames": 3972,
+      "simulated_duration_s": 39.71999999999915,
+      "motion_completion_fraction": 1.0,
+      "motion_completed": true,
+      "exact_motion_frame_sequence": true,
+      "terminal_terms": "",
+      "all_metrics_finite": true,
+      "no_motion_wrap": true,
+      "started_near_platform_center": true,
+      "reward_mean": 0.07605796548550102,
+      "reward_p95": 0.08081497810781002,
+      "anchor_pos_mean": 0.08246436656669982,
+      "anchor_pos_p95": 0.24689460843801472,
+      "anchor_pos_max": 0.377582311630249,
+      "anchor_rot_p95": 0.10646388940513134,
+      "body_pos_mean": 0.03734509547192145,
+      "body_pos_p95": 0.07212970592081547,
+      "body_pos_max": 0.08993693441152573,
+      "joint_pos_mean": 0.39776934792399254,
+      "joint_pos_p95": 0.6841701209545135,
+      "joint_pos_max": 1.0138165950775146,
+      "max_distance_from_center_m": 0.6669537327784669,
+      "xy_tracking_drift_p95_m": 0.2453643528360449,
+      "xy_tracking_drift_max_m": 0.377463180014317,
+      "xy_tracking_drift_last_m": 0.026374878503050547,
+      "initial_stationary_xy_max_m": 0.19964096001378193,
+      "stationary_tail_xy_increase_m": 0.001236325768534826,
+      "stationary_tail_xy_slope_m_per_s": -0.004085855221971232,
+      "acceptance_profile": "robust",
+      "failed_checks": [],
+      "acceptance_pass": true
+    }
+  ],
+  "passed": [
+    "robust_seed0"
+  ],
+  "failed": [],
+  "pass_count": 1,
+  "evaluation_count": 1
+}

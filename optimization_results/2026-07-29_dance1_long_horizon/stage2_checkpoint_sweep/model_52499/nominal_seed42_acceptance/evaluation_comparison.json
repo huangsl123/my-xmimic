@@ -1,0 +1,68 @@
+{
+  "criteria": {
+    "nominal": {
+      "xy_p95_max_m": 0.2,
+      "xy_max_m": 0.35,
+      "xy_last_m": 0.25,
+      "initial_stationary_xy_max_m": 0.15
+    },
+    "robust": {
+      "xy_p95_max_m": 0.25,
+      "xy_max_m": 0.5,
+      "xy_last_m": 0.35,
+      "initial_stationary_xy_max_m": 0.25
+    },
+    "shared": {
+      "platform_center_distance_safety_max_m": 1.0,
+      "body_pos_p95_max_m": 0.08,
+      "joint_pos_p95_max_rad_norm": 0.9,
+      "anchor_rot_p95_max_rad": 0.15,
+      "stationary_tail_xy_increase_max_m": 0.05,
+      "stationary_tail_xy_slope_max_m_per_s": 0.01,
+      "motion_wrap_count": 0
+    }
+  },
+  "evaluations": [
+    {
+      "label": "nominal_seed42",
+      "logged_steps": 3972,
+      "motion_total_frames": 3972,
+      "simulated_duration_s": 39.71999999999915,
+      "motion_completion_fraction": 1.0,
+      "motion_completed": true,
+      "exact_motion_frame_sequence": true,
+      "terminal_terms": "",
+      "all_metrics_finite": true,
+      "no_motion_wrap": true,
+      "started_near_platform_center": true,
+      "reward_mean": 0.07713825893114731,
+      "reward_p95": 0.0805021371692419,
+      "anchor_pos_mean": 0.07378459511025108,
+      "anchor_pos_p95": 0.13951903358101841,
+      "anchor_pos_max": 0.1569667011499405,
+      "anchor_rot_p95": 0.10186595059931278,
+      "body_pos_mean": 0.04544031023130399,
+      "body_pos_p95": 0.06698862761259079,
+      "body_pos_max": 0.08225059509277344,
+      "joint_pos_mean": 0.41012824599678965,
+      "joint_pos_p95": 0.6419748723506927,
+      "joint_pos_max": 0.9392749071121216,
+      "max_distance_from_center_m": 0.634258747912983,
+      "xy_tracking_drift_p95_m": 0.13609091817486668,
+      "xy_tracking_drift_max_m": 0.15619092187615813,
+      "xy_tracking_drift_last_m": 0.016510817289698818,
+      "initial_stationary_xy_max_m": 0.08072207410833816,
+      "stationary_tail_xy_increase_m": -0.0025357302170118355,
+      "stationary_tail_xy_slope_m_per_s": -0.0033322335164059657,
+      "acceptance_profile": "nominal",
+      "failed_checks": [],
+      "acceptance_pass": true
+    }
+  ],
+  "passed": [
+    "nominal_seed42"
+  ],
+  "failed": [],
+  "pass_count": 1,
+  "evaluation_count": 1
+}

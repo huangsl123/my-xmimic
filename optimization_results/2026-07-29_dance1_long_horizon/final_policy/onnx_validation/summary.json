@@ -1,0 +1,514 @@
+{
+  "model": "/home/eai/my project/my-xmimic/xMimic/artifacts/2026-07-29_dance1_long_horizon_optimization/interpolation_sweep/a025/nominal_seed42/onnx/policy.onnx",
+  "model_sha256": "436b3522f9746535e28a1fc37f0894729fb6e925d79e998c329c7a8f1a7524a9",
+  "model_size_bytes": 6631696,
+  "checkpoint": "/home/eai/my project/my-xmimic/xMimic/logs/rsl_rl/dex_evt_flat/2026-07-29_17-09-14_dance1_state_feedback_stage2_20s_4096_additional1500_from_stage1_51000/model_interp_52000_52499_a025.pt",
+  "checkpoint_sha256": "09bc93df418905b8e5105eea6d8653b05d7963183adb785ab3cd43f33b493928",
+  "checkpoint_iteration": 52499,
+  "motion_file": "/home/eai/my project/my-xmimic/xMimic/motion_data/dance1_easy_named.npz",
+  "motion_sha256": "5c9a59f6ae003df62313bd5a41ec9bb6f4626cca90819a8841cdde9f062127ed",
+  "motion_frames": 3972,
+  "motion_fps": 100.0,
+  "expected_observation_profile": "state-feedback",
+  "expected_observation_names": [
+    "command",
+    "motion_anchor_pos_b",
+    "motion_anchor_ori_b",
+    "base_lin_vel",
+    "base_ang_vel",
+    "joint_pos",
+    "joint_vel",
+    "actions"
+  ],
+  "ir_version": 6,
+  "opsets": [
+    {
+      "domain": "",
+      "version": 11
+    }
+  ],
+  "inputs": [
+    {
+      "name": "obs",
+      "dtype": "FLOAT",
+      "shape": [
+        1,
+        130
+      ]
+    },
+    {
+      "name": "time_step",
+      "dtype": "FLOAT",
+      "shape": [
+        1,
+        1
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "name": "actions",
+      "dtype": "FLOAT",
+      "shape": [
+        1,
+        23
+      ]
+    },
+    {
+      "name": "joint_pos",
+      "dtype": "FLOAT",
+      "shape": [
+        1,
+        23
+      ]
+    },
+    {
+      "name": "joint_vel",
+      "dtype": "FLOAT",
+      "shape": [
+        1,
+        23
+      ]
+    },
+    {
+      "name": "body_pos_w",
+      "dtype": "FLOAT",
+      "shape": [
+        1,
+        24,
+        3
+      ]
+    },
+    {
+      "name": "body_quat_w",
+      "dtype": "FLOAT",
+      "shape": [
+        1,
+        24,
+        4
+      ]
+    },
+    {
+      "name": "body_lin_vel_w",
+      "dtype": "FLOAT",
+      "shape": [
+        1,
+        24,
+        3
+      ]
+    },
+    {
+      "name": "body_ang_vel_w",
+      "dtype": "FLOAT",
+      "shape": [
+        1,
+        24,
+        3
+      ]
+    }
+  ],
+  "initializer_count": 10,
+  "initializers": [
+    {
+      "name": "actor.0.weight",
+      "shape": [
+        512,
+        130
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    {
+      "name": "actor.0.bias",
+      "shape": [
+        512
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    {
+      "name": "actor.2.weight",
+      "shape": [
+        256,
+        512
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    {
+      "name": "actor.2.bias",
+      "shape": [
+        256
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    {
+      "name": "actor.4.weight",
+      "shape": [
+        128,
+        256
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    {
+      "name": "actor.4.bias",
+      "shape": [
+        128
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    {
+      "name": "actor.6.weight",
+      "shape": [
+        23,
+        128
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    {
+      "name": "actor.6.bias",
+      "shape": [
+        23
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    {
+      "name": "normalizer._mean",
+      "shape": [
+        1,
+        130
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    {
+      "name": "onnx::Div_52",
+      "shape": [
+        1,
+        130
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    }
+  ],
+  "constant_tensor_count": 8,
+  "constant_tensors": [
+    {
+      "node_index": 3,
+      "node_name": "/Constant",
+      "node_op_type": "Constant",
+      "attribute": "value",
+      "tensor_index": 0,
+      "shape": [],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    {
+      "node_index": 4,
+      "node_name": "/Constant_1",
+      "node_op_type": "Constant",
+      "attribute": "value",
+      "tensor_index": 0,
+      "shape": [],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    {
+      "node_index": 16,
+      "node_name": "/Constant_2",
+      "node_op_type": "Constant",
+      "attribute": "value",
+      "tensor_index": 0,
+      "shape": [
+        3972,
+        23
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    {
+      "node_index": 18,
+      "node_name": "/Constant_3",
+      "node_op_type": "Constant",
+      "attribute": "value",
+      "tensor_index": 0,
+      "shape": [
+        3972,
+        23
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    {
+      "node_index": 20,
+      "node_name": "/Constant_4",
+      "node_op_type": "Constant",
+      "attribute": "value",
+      "tensor_index": 0,
+      "shape": [
+        3972,
+        24,
+        3
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    {
+      "node_index": 22,
+      "node_name": "/Constant_5",
+      "node_op_type": "Constant",
+      "attribute": "value",
+      "tensor_index": 0,
+      "shape": [
+        3972,
+        24,
+        4
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    {
+      "node_index": 24,
+      "node_name": "/Constant_6",
+      "node_op_type": "Constant",
+      "attribute": "value",
+      "tensor_index": 0,
+      "shape": [
+        3972,
+        24,
+        3
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    },
+    {
+      "node_index": 26,
+      "node_name": "/Constant_7",
+      "node_op_type": "Constant",
+      "attribute": "value",
+      "tensor_index": 0,
+      "shape": [
+        3972,
+        24,
+        3
+      ],
+      "dtype": "float32",
+      "all_finite": true
+    }
+  ],
+  "embedded_motion_maximum_absolute_differences": {
+    "joint_pos": 0.0,
+    "joint_vel": 0.0,
+    "body_pos_w": 0.0,
+    "body_quat_w": 0.0,
+    "body_lin_vel_w": 0.0,
+    "body_ang_vel_w": 0.0
+  },
+  "motion_quaternion_norm_max_error": 8.344650268554688e-07,
+  "metadata": {
+    "run_path": "/home/eai/my project/my-xmimic/xMimic/logs/rsl_rl/dex_evt_flat/2026-07-29_17-09-14_dance1_state_feedback_stage2_20s_4096_additional1500_from_stage1_51000/model_interp_52000_52499_a025.pt",
+    "joint_names": "hip_pitch_l_joint,hip_pitch_r_joint,waist_yaw_joint,hip_roll_l_joint,hip_roll_r_joint,waist_roll_joint,hip_yaw_l_joint,hip_yaw_r_joint,waist_pitch_joint,knee_pitch_l_joint,knee_pitch_r_joint,shoulder_pitch_l_joint,shoulder_pitch_r_joint,ankle_pitch_l_joint,ankle_pitch_r_joint,shoulder_roll_l_joint,shoulder_roll_r_joint,ankle_roll_l_joint,ankle_roll_r_joint,shoulder_yaw_l_joint,shoulder_yaw_r_joint,elbow_pitch_l_joint,elbow_pitch_r_joint",
+    "joint_stiffness": "300.000,300.000,400.000,300.000,300.000,400.000,150.000,150.000,400.000,350.000,350.000,150.000,150.000,30.000,30.000,150.000,150.000,16.800,16.800,130.000,130.000,130.000,130.000",
+    "joint_damping": "15.000,15.000,7.500,15.000,15.000,15.000,7.500,7.500,15.000,15.000,15.000,7.400,7.400,3.750,3.750,7.400,7.400,2.100,2.100,5.900,5.900,5.900,5.900",
+    "default_joint_pos": "-0.250,-0.250,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.500,0.500,0.000,0.000,-0.250,-0.250,0.300,-0.300,0.000,0.000,0.000,0.000,-0.300,-0.300",
+    "command_names": "motion",
+    "observation_names": "command,motion_anchor_pos_b,motion_anchor_ori_b,base_lin_vel,base_ang_vel,joint_pos,joint_vel,actions",
+    "action_scale": "0.250,0.250,0.250,0.250,0.250,0.250,0.250,0.250,0.250,0.250,0.250,0.250,0.250,0.250,0.250,0.250,0.250,0.250,0.250,0.250,0.250,0.250,0.250",
+    "body_names": "pelvis,hip_pitch_l_link,hip_roll_l_link,hip_yaw_l_link,knee_pitch_l_link,ankle_pitch_l_link,ankle_roll_l_link,hip_pitch_r_link,hip_roll_r_link,hip_yaw_r_link,knee_pitch_r_link,ankle_pitch_r_link,ankle_roll_r_link,waist_yaw_link,waist_roll_link,waist_pitch_link,shoulder_pitch_l_link,shoulder_roll_l_link,shoulder_yaw_l_link,elbow_pitch_l_link,shoulder_pitch_r_link,shoulder_roll_r_link,shoulder_yaw_r_link,elbow_pitch_r_link",
+    "motion_fps": "100.0",
+    "motion_frame_count": "3972",
+    "checkpoint_path": "/home/eai/my project/my-xmimic/xMimic/logs/rsl_rl/dex_evt_flat/2026-07-29_17-09-14_dance1_state_feedback_stage2_20s_4096_additional1500_from_stage1_51000/model_interp_52000_52499_a025.pt",
+    "checkpoint_sha256": "09bc93df418905b8e5105eea6d8653b05d7963183adb785ab3cd43f33b493928",
+    "motion_file": "/home/eai/my project/my-xmimic/xMimic/motion_data/dance1_easy_named.npz",
+    "motion_sha256": "5c9a59f6ae003df62313bd5a41ec9bb6f4626cca90819a8841cdde9f062127ed",
+    "play_randomization_enabled": "False"
+  },
+  "actor_maximum_absolute_differences": {
+    "actor.0.weight": 0.0,
+    "actor.0.bias": 0.0,
+    "actor.2.weight": 0.0,
+    "actor.2.bias": 0.0,
+    "actor.4.weight": 0.0,
+    "actor.4.bias": 0.0,
+    "actor.6.weight": 0.0,
+    "actor.6.bias": 0.0
+  },
+  "normalizer_divisor_initializer": [
+    "onnx::Div_52"
+  ],
+  "frame_checks": [
+    {
+      "requested_frame": -1,
+      "expected_clamped_frame": 0,
+      "all_outputs_finite": true,
+      "motion_outputs_match": {
+        "joint_pos": true,
+        "joint_vel": true,
+        "body_pos_w": true,
+        "body_quat_w": true,
+        "body_lin_vel_w": true,
+        "body_ang_vel_w": true
+      },
+      "maximum_absolute_differences": {
+        "joint_pos": 0.0,
+        "joint_vel": 0.0,
+        "body_pos_w": 0.0,
+        "body_quat_w": 0.0,
+        "body_lin_vel_w": 0.0,
+        "body_ang_vel_w": 0.0
+      }
+    },
+    {
+      "requested_frame": 0,
+      "expected_clamped_frame": 0,
+      "all_outputs_finite": true,
+      "motion_outputs_match": {
+        "joint_pos": true,
+        "joint_vel": true,
+        "body_pos_w": true,
+        "body_quat_w": true,
+        "body_lin_vel_w": true,
+        "body_ang_vel_w": true
+      },
+      "maximum_absolute_differences": {
+        "joint_pos": 0.0,
+        "joint_vel": 0.0,
+        "body_pos_w": 0.0,
+        "body_quat_w": 0.0,
+        "body_lin_vel_w": 0.0,
+        "body_ang_vel_w": 0.0
+      }
+    },
+    {
+      "requested_frame": 1234,
+      "expected_clamped_frame": 1234,
+      "all_outputs_finite": true,
+      "motion_outputs_match": {
+        "joint_pos": true,
+        "joint_vel": true,
+        "body_pos_w": true,
+        "body_quat_w": true,
+        "body_lin_vel_w": true,
+        "body_ang_vel_w": true
+      },
+      "maximum_absolute_differences": {
+        "joint_pos": 0.0,
+        "joint_vel": 0.0,
+        "body_pos_w": 0.0,
+        "body_quat_w": 0.0,
+        "body_lin_vel_w": 0.0,
+        "body_ang_vel_w": 0.0
+      }
+    },
+    {
+      "requested_frame": 3971,
+      "expected_clamped_frame": 3971,
+      "all_outputs_finite": true,
+      "motion_outputs_match": {
+        "joint_pos": true,
+        "joint_vel": true,
+        "body_pos_w": true,
+        "body_quat_w": true,
+        "body_lin_vel_w": true,
+        "body_ang_vel_w": true
+      },
+      "maximum_absolute_differences": {
+        "joint_pos": 0.0,
+        "joint_vel": 0.0,
+        "body_pos_w": 0.0,
+        "body_quat_w": 0.0,
+        "body_lin_vel_w": 0.0,
+        "body_ang_vel_w": 0.0
+      }
+    },
+    {
+      "requested_frame": 3972,
+      "expected_clamped_frame": 3971,
+      "all_outputs_finite": true,
+      "motion_outputs_match": {
+        "joint_pos": true,
+        "joint_vel": true,
+        "body_pos_w": true,
+        "body_quat_w": true,
+        "body_lin_vel_w": true,
+        "body_ang_vel_w": true
+      },
+      "maximum_absolute_differences": {
+        "joint_pos": 0.0,
+        "joint_vel": 0.0,
+        "body_pos_w": 0.0,
+        "body_quat_w": 0.0,
+        "body_lin_vel_w": 0.0,
+        "body_ang_vel_w": 0.0
+      }
+    }
+  ],
+  "actor_parity_cases": [
+    {
+      "case_index": 0,
+      "input_kind": "zeros",
+      "all_finite": true,
+      "matches": true,
+      "maximum_absolute_difference": 4.76837158203125e-07
+    },
+    {
+      "case_index": 1,
+      "input_kind": "random_seed_42",
+      "all_finite": true,
+      "matches": true,
+      "maximum_absolute_difference": 3.203749656677246e-07
+    },
+    {
+      "case_index": 2,
+      "input_kind": "random_seed_43",
+      "all_finite": true,
+      "matches": true,
+      "maximum_absolute_difference": 1.1920928955078125e-06
+    }
+  ],
+  "checks": {
+    "onnx_checker_passed": true,
+    "ir_version_is_6": true,
+    "opset_is_11": true,
+    "inputs_match_expected": true,
+    "outputs_match_expected": true,
+    "input_output_dtypes_are_float": true,
+    "all_initializers_finite": true,
+    "all_constant_tensors_finite": true,
+    "checkpoint_iteration_matches": true,
+    "checkpoint_hash_metadata_matches": true,
+    "checkpoint_path_metadata_matches": true,
+    "actor_weights_match_checkpoint": true,
+    "actor_outputs_match_checkpoint_forward": true,
+    "normalizer_mean_matches_checkpoint": true,
+    "normalizer_divisor_matches_checkpoint": true,
+    "required_metadata_nonempty": true,
+    "joint_metadata_counts_match": true,
+    "joint_names_unique": true,
+    "joint_numeric_metadata_finite": true,
+    "action_scale_matches_expected": true,
+    "body_metadata_count_matches": true,
+    "body_names_unique": true,
+    "observation_names_match_expected": true,
+    "command_names_match_expected": true,
+    "run_path_identifies_checkpoint": true,
+    "motion_hash_metadata_matches": true,
+    "motion_path_metadata_matches": true,
+    "motion_frame_count_metadata_matches": true,
+    "motion_fps_metadata_matches": true,
+    "tracked_body_names_resolve": true,
+    "motion_file_all_numeric_finite": true,
+    "embedded_motion_constants_match_source": true,
+    "motion_quaternions_normalized": true,
+    "motion_outputs_match_source_at_boundaries": true,
+    "reference_inference_all_finite": true,
+    "randomization_metadata_is_boolean": true,
+    "randomization_metadata_matches": true,
+    "all_passed": true
+  }
+}

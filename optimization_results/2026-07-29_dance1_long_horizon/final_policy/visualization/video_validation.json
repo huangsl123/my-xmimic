@@ -1,0 +1,286 @@
+{
+  "video": "/home/eai/my project/my-xmimic/xMimic/artifacts/2026-07-29_dance1_long_horizon_optimization/final_a025_1x_video/video/rl-video-step-0.mp4",
+  "sha256": "4f325686501b05c368873628565a57b96421d6f4abd217d39da023c7d5573f13",
+  "size_bytes": 3297171,
+  "fps": 100.0,
+  "container_frame_count": 3972,
+  "decoded_frame_count": 3972,
+  "duration_s": 39.72,
+  "decoded_pts_duration_s": 39.72,
+  "resolution": [
+    1280,
+    720
+  ],
+  "sampled_frames": [
+    {
+      "frame": 0,
+      "decoded": true,
+      "mean": 93.82490053530093,
+      "std": 35.478347028860625,
+      "minimum": 0,
+      "maximum": 255,
+      "pixel_sha256": "d22b9e83372fdd47b06c17f48254cc21987b6784023030bf4925a946e50ca463"
+    },
+    {
+      "frame": 361,
+      "decoded": true,
+      "mean": 104.12836624710648,
+      "std": 19.52888777307809,
+      "minimum": 0,
+      "maximum": 255,
+      "pixel_sha256": "f1d470ca6ee058f82123c0b18ab657b97882ce5ad3df0ce8aa051f37e2175db1"
+    },
+    {
+      "frame": 722,
+      "decoded": true,
+      "mean": 104.06422706886575,
+      "std": 20.617206316113595,
+      "minimum": 0,
+      "maximum": 251,
+      "pixel_sha256": "898db5a162a36effd6f1871a6a46c3118c46936f62a5f4913a9006fd8e96bb58"
+    },
+    {
+      "frame": 1083,
+      "decoded": true,
+      "mean": 104.33712890625,
+      "std": 20.108769246549805,
+      "minimum": 0,
+      "maximum": 255,
+      "pixel_sha256": "f9b443d41b963aa80901c6f76c75f21969183f69b32535b3aac6ec3f711c0421"
+    },
+    {
+      "frame": 1444,
+      "decoded": true,
+      "mean": 104.77115849247686,
+      "std": 22.01617206945006,
+      "minimum": 0,
+      "maximum": 252,
+      "pixel_sha256": "c5195b63d4ff046940592439928aab71153154962d5d805c528e9df8d937874d"
+    },
+    {
+      "frame": 1805,
+      "decoded": true,
+      "mean": 104.0974562355324,
+      "std": 20.42992966413114,
+      "minimum": 0,
+      "maximum": 255,
+      "pixel_sha256": "c7557d8b67749f43efcdbdb4f753ffc1a673a6301609b42f4b60fed7af4911b3"
+    },
+    {
+      "frame": 2166,
+      "decoded": true,
+      "mean": 104.99404405381945,
+      "std": 22.6864703696718,
+      "minimum": 0,
+      "maximum": 253,
+      "pixel_sha256": "4cbb1b8654c9ce0d121bc0bae9fb0d2649af402ef8338b200cd3bb873e61e20a"
+    },
+    {
+      "frame": 2527,
+      "decoded": true,
+      "mean": 105.09543511284723,
+      "std": 23.53238739494052,
+      "minimum": 0,
+      "maximum": 255,
+      "pixel_sha256": "0aceba303b8be6bcd9635249067709449e4a877d11425f014ad970dd6a4eab3d"
+    },
+    {
+      "frame": 2888,
+      "decoded": true,
+      "mean": 105.1306032986111,
+      "std": 22.958148001886823,
+      "minimum": 0,
+      "maximum": 252,
+      "pixel_sha256": "cee496dcaf512889d30ae02b09aa151343277e52c6bdd68b841dfbe24e19e618"
+    },
+    {
+      "frame": 3249,
+      "decoded": true,
+      "mean": 105.32241102430555,
+      "std": 22.86729577817713,
+      "minimum": 0,
+      "maximum": 255,
+      "pixel_sha256": "a2bba4830965bd2a952c238c472ff346cd630854ed3ce6140fb0b4e843269364"
+    },
+    {
+      "frame": 3610,
+      "decoded": true,
+      "mean": 104.99380967881945,
+      "std": 20.199146475050586,
+      "minimum": 0,
+      "maximum": 255,
+      "pixel_sha256": "c0ed5886f3a57f5a5cd543b2216f2960e41d8ab79a1aece05f0f895ce8ab758f"
+    },
+    {
+      "frame": 3971,
+      "decoded": true,
+      "mean": 105.1853468605324,
+      "std": 20.530152957730134,
+      "minimum": 0,
+      "maximum": 255,
+      "pixel_sha256": "b0d41b2f7f4de81ef59b4d0ff49a5bdc83e64e152bb6959aa09704d7e87679d4"
+    }
+  ],
+  "sampled_frame_unique_pixel_hash_count": 12,
+  "adjacent_sampled_frame_mads": [
+    {
+      "from_frame": 0,
+      "to_frame": 361,
+      "mean_absolute_difference": 20.907983779907227
+    },
+    {
+      "from_frame": 361,
+      "to_frame": 722,
+      "mean_absolute_difference": 5.561883449554443
+    },
+    {
+      "from_frame": 722,
+      "to_frame": 1083,
+      "mean_absolute_difference": 6.153372287750244
+    },
+    {
+      "from_frame": 1083,
+      "to_frame": 1444,
+      "mean_absolute_difference": 6.361845970153809
+    },
+    {
+      "from_frame": 1444,
+      "to_frame": 1805,
+      "mean_absolute_difference": 6.421517848968506
+    },
+    {
+      "from_frame": 1805,
+      "to_frame": 2166,
+      "mean_absolute_difference": 5.196835994720459
+    },
+    {
+      "from_frame": 2166,
+      "to_frame": 2527,
+      "mean_absolute_difference": 7.268378734588623
+    },
+    {
+      "from_frame": 2527,
+      "to_frame": 2888,
+      "mean_absolute_difference": 6.348176956176758
+    },
+    {
+      "from_frame": 2888,
+      "to_frame": 3249,
+      "mean_absolute_difference": 5.763277053833008
+    },
+    {
+      "from_frame": 3249,
+      "to_frame": 3610,
+      "mean_absolute_difference": 7.152538299560547
+    },
+    {
+      "from_frame": 3610,
+      "to_frame": 3971,
+      "mean_absolute_difference": 2.2275021076202393
+    }
+  ],
+  "relative_to_first_sampled_frame_mads": [
+    {
+      "from_frame": 0,
+      "to_frame": 361,
+      "mean_absolute_difference": 20.907983779907227
+    },
+    {
+      "from_frame": 0,
+      "to_frame": 722,
+      "mean_absolute_difference": 21.618263244628906
+    },
+    {
+      "from_frame": 0,
+      "to_frame": 1083,
+      "mean_absolute_difference": 23.071348190307617
+    },
+    {
+      "from_frame": 0,
+      "to_frame": 1444,
+      "mean_absolute_difference": 23.583911895751953
+    },
+    {
+      "from_frame": 0,
+      "to_frame": 1805,
+      "mean_absolute_difference": 23.088376998901367
+    },
+    {
+      "from_frame": 0,
+      "to_frame": 2166,
+      "mean_absolute_difference": 24.148117065429688
+    },
+    {
+      "from_frame": 0,
+      "to_frame": 2527,
+      "mean_absolute_difference": 24.2728328704834
+    },
+    {
+      "from_frame": 0,
+      "to_frame": 2888,
+      "mean_absolute_difference": 24.96178436279297
+    },
+    {
+      "from_frame": 0,
+      "to_frame": 3249,
+      "mean_absolute_difference": 24.347867965698242
+    },
+    {
+      "from_frame": 0,
+      "to_frame": 3610,
+      "mean_absolute_difference": 24.74392318725586
+    },
+    {
+      "from_frame": 0,
+      "to_frame": 3971,
+      "mean_absolute_difference": 24.878442764282227
+    }
+  ],
+  "maximum_sampled_frame_mad": 24.96178436279297,
+  "decode_progress": {
+    "frame": "3972",
+    "fps": "0.00",
+    "stream_0_0_q": "-0.0",
+    "bitrate": "N/A",
+    "total_size": "N/A",
+    "out_time_us": "39720000",
+    "out_time_ms": "39720000",
+    "out_time": "00:00:39.720000",
+    "dup_frames": "0",
+    "drop_frames": "0",
+    "speed": "124x",
+    "progress": "end"
+  },
+  "decode_error_bytes": 0,
+  "expected": {
+    "fps": 100.0,
+    "frames": 3972,
+    "duration_s": 39.72,
+    "resolution": [
+      1280,
+      720
+    ],
+    "minimum_unique_sampled_pixel_hashes": 2,
+    "minimum_sampled_frame_mad_exclusive": 0.5
+  },
+  "checks": {
+    "fps_matches": true,
+    "container_frame_count_matches": true,
+    "decoded_frame_count_matches": true,
+    "duration_matches": true,
+    "decoded_pts_duration_matches": true,
+    "resolution_matches": true,
+    "all_sampled_frames_decode": true,
+    "first_frame_is_not_black": true,
+    "all_sampled_frames_are_not_black": true,
+    "sampled_frames_have_multiple_pixel_hashes": true,
+    "sampled_frame_maximum_mad_exceeds_threshold": true,
+    "no_duplicate_frames_reported": true,
+    "no_dropped_frames_reported": true,
+    "decode_completed": true,
+    "decode_error_log_empty": true,
+    "decode_progress_is_newer_than_video": true,
+    "decode_error_log_is_newer_than_video": true,
+    "all_passed": true
+  }
+}

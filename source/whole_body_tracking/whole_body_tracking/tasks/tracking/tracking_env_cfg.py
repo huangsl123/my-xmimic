@@ -297,6 +297,7 @@ class RewardsCfg:
     # DexEVT configuration so existing tasks/checkpoints retain their objective.
     motion_global_anchor_xy_coarse = None
     motion_global_anchor_xy_vel = None
+    motion_joint_pos = None
     motion_global_anchor_ori = RewTerm(
         func=mdp.motion_global_anchor_orientation_error_exp,
         weight=0.5,
